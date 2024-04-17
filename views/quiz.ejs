@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Quiz</title>
+</head>
+<body>
+    <h1>Node.js Quiz</h1>
+    <form id="quizForm" method="post" action="submit">
+        <% quizData.forEach(question => { %>
+            <div>
+                <p><strong>Question <%= question.id %>:</strong> <%= question.question %></p>
+                <ul>
+                    <% question.choices.forEach(choice => { %>
+                        <li>
+                            <label>
+                                <input type="radio" name="<%= question.id %>" value="<%= choice %>">
+                                <%= choice %>
+                            </label>
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+        <% }); %>
+        <button type="submit">Submit Answers</button>
+    </form>    
+    
+</body>
+</html>

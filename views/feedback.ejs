@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Feedback</title>
+</head>
+<body>
+    <h1>Quiz Feedback -
+    <% if (score >= 0) { %>
+        Total Score: <%= score %> / <%= quizData.length %>
+    </h1>
+    <% } else { %>
+        <p>Unable to calculate score. Please try again later.</p>
+    <% } %>
+
+    <!-- Render the quiz form with selected options -->
+    <!-- <h2>Quiz Form with Selected Options:</h2> -->
+    <form id="quizForm">
+        <% quizData.forEach(question => { %>
+            <div>
+                <p><strong>Question <%= question.id %>:</strong> <%= question.question %></p>
+                <ul>
+                    <% question.choices.forEach(choice => { %>
+                        <li>
+                            <label>
+                                <input type="radio" 
+                                name="<%= question.id %>" 
+                                value="<%= choice %>" 
+                                <%= (userAnswers[question.id] === choice) ? 'checked' : 'disabled' %> >
+                                <!-- <input type="radio" name="<%= question.id %>" value="<%= choice %>" <% if (userAnswers[question.id] === choice) { %>checked<% } %><% if (userAnswers[question.id] != choice) { %>disabled<% } %>> -->
+                                <%= choice %> <% if (userAnswers[question.id] === choice) { %>(Your Answer)<% } %>
+                            </label>
+                        </li>
+                    <% }); %>
+                </ul>
+                <p><strong>Correct Answer:</strong> <%= question.answer %></p>
+            </div>
+        <% }); %>
+    </form>
+</body>
+</html>

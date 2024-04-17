@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Quiz</title>
+</head>
+<body>
+    <h1>Node.js Quiz</h1>
+    <form id="quizForm">
+        <!-- Quiz questions will be dynamically inserted here -->
+        <button type="submit">Submit Answers</button>
+    </form>
+    <div id="feedback"></div>
+
+    <script>
+        // Fetch quiz questions from server
+        fetch('/quiz')
+            .then(response => response.json())
+            .then(questions => {
+                const form = document.getElementById('quizForm');
+                const feedbackDiv = document.getElementById('feedback');
+
+                questions.forEach(question => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.innerHTML = `
+                        <p>${question.question}</p>
+                        ${question.choices.map(choice => `<label><input type="radio" name="${question.id}" value="${choice[0]}"> ${choice}</label><br>`).join('')}
+                        <hr>
+                    `;
+                    form.appendChild(questionDiv);
+                });
+
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    const formData = new FormData(form);
+                    const userAnswers = {};
+                    formData.forEach((value, key) => {
+                        userAnswers[key] = value;
+                    });
+
+                    // Submit answers to server
+                    fetch('/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userAnswers)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Display feedback
+                        const feedbackHTML = data.feedback.map(item => {
+                            if (item.correct) {
+                                return `<p>Question ${item.id}: Correct!</p>`;
+                            } else {
+                                return `<p>Question ${item.id}: Incorrect. Correct answer: ${item.correctAnswer}</p>`;
+                            }
+                        }).join('');
+                        feedbackDiv.innerHTML = `<h2>Quiz Results</h2>${feedbackHTML}<p>Total Score: ${data.score}</p>`;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        feedbackDiv.innerHTML = '<p>An error occurred. Please try again.</p>';
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.body.innerHTML = '<p>An error occurred. Please try again later.</p>';
+            });
+    </script>
+</body>
+</html>
