@@ -20,7 +20,6 @@ app.post('/submit', (req, res) => {
     const userAnswers = req.body;
     let score = 0;
     let feedback = [];
-    console.log(userAnswers)
 
     // Calculate score and provide feedback
     quizData.forEach(question => {

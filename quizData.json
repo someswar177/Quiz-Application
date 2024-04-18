@@ -130,5 +130,38 @@
             "D. To define custom event emitters in Node.js."
         ],
         "answer": "C. To provide information about the operating system such as CPU, memory, and network interfaces."
+    },
+    {
+        "id": 13,
+        "question": "What is the purpose of the 'events' module in Node.js?",
+        "choices": [
+            "A. To perform mathematical operations.",
+            "B. To handle HTTP requests and responses.",
+            "C. To create and handle custom events in Node.js applications.",
+            "D. To define custom event emitters."
+        ],
+        "answer": "C. To create and handle custom events in Node.js applications."
+    },
+    {
+        "id": 14,
+        "question": "What is the significance of the 'process' object in Node.js?",
+        "choices": [
+            "A. It provides methods for performing file system operations.",
+            "B. It handles HTTP requests and responses in Node.js applications.",
+            "C. It provides information about the current Node.js process and allows interaction with the operating system.",
+            "D. It defines custom event emitters in Node.js."
+        ],
+        "answer": "C. It provides information about the current Node.js process and allows interaction with the operating system."
+    },
+    {
+        "id": 15,
+        "question": "How does Node.js handle blocking and non-blocking operations?",
+        "choices": [
+            "A. Node.js uses synchronous operations for all tasks.",
+            "B. Node.js uses asynchronous operations for all tasks.",
+            "C. Node.js utilizes a single thread with non-blocking I/O operations to handle multiple requests concurrently.",
+            "D. Node.js utilizes multiple threads to handle blocking I/O operations efficiently."
+        ],
+        "answer": "C. Node.js utilizes a single thread with non-blocking I/O operations to handle multiple requests concurrently."
     }
 ]

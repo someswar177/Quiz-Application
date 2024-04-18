@@ -4,9 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Node.js Quiz</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        #quizForm {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border-radius: 15px;
+            padding: 1% 3%;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+        }
+        button[type="submit"] {
+            padding: 5px 8px;
+            align-self: flex-end;
+            margin-top: 5%;
+            margin-bottom: 8%;
+            margin-right: 15%;
+            background-color: blue;
+            color: white;
+            border-color:white;
+            font-size: medium;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        h4{
+            margin: 0% 10%;
+            margin-bottom: 2%;
+            color: chocolate;
+        }
+    </style>
 </head>
 <body>
-    <h1>Node.js Quiz</h1>
+    <h1>Node.js Quiz - (<%= quizData.length %> Marks)</h1>
+    <h4>Instructions : Each question carries one mark. There is no negative marking for wrong answers. Zero marks will be awarded for incorrect answers and for questions that are not attempted.</h4>
     <form id="quizForm" method="post" action="submit">
         <% quizData.forEach(question => { %>
             <div>
@@ -23,7 +60,7 @@
                 </ul>
             </div>
         <% }); %>
-        <button type="submit">Submit Answers</button>
+        <button type="submit">Submit Quiz</button>
     </form>    
     
 </body>
