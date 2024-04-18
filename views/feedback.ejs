@@ -41,15 +41,14 @@
 <body>
     <h1>Quiz Feedback -
     <% if (score >= 0) { %>
-        Your Score: (<%= score %> / <%= quizData.length %>)
+        Your Score: (<%= score %> / <%= quizData.length %>) <!-- Displaying user's score which was rendered from app.js -->
     </h1>
     <h4>Instructions : Each question carries one mark. There is no negative marking for wrong answers. Zero marks will be awarded for incorrect answers and for questions that are not attempted.</h4>
     <% } else { %>
         <p>Unable to calculate score. Please try again later.</p>
     <% } %>
 
-    <!-- Render the quiz form with selected options -->
-    <!-- <h2>Quiz Form with Selected Options:</h2> -->
+    <!-- Render the quiz form with selected options and correct answers -->
     <form id="quizForm">
         <% quizData.forEach(question => { %>
             <div>
@@ -61,14 +60,13 @@
                                 <input type="radio" 
                                 name="<%= question.id %>" 
                                 value="<%= choice %>" 
-                                <%= (userAnswers[question.id] === choice) ? 'checked' : 'disabled' %> >
-                                <!-- <input type="radio" name="<%= question.id %>" value="<%= choice %>" <% if (userAnswers[question.id] === choice) { %>checked<% } %><% if (userAnswers[question.id] != choice) { %>disabled<% } %>> -->
+                                <%= (userAnswers[question.id] === choice) ? 'checked' : 'disabled' %> > <!-- User selected option is checked and remaining all are disabled -->
                                 <%= choice %> <% if (userAnswers[question.id] === choice) { %><% } %>
                             </label>
                             <% if (userAnswers[question.id] === choice && question.answer === choice) { %>
-                                <span class="correct-choice">(Your Answer - &#10003; 1 mark) </span>
+                                <span class="correct-choice">(Your Answer - &#10003; 1 mark) </span>  <!-- For correct answer it will show Tick symbol -->
                             <% } else if (userAnswers[question.id] === choice && question.answer !== choice) { %>
-                                <span class="incorrect-choice">(Your Answer - &times; 0 marks) </span>
+                                <span class="incorrect-choice">(Your Answer - &times; 0 marks) </span>  <!-- For In-correct answer it will show Cross symbol -->
                             <% } %>
                         </li>
                     <% }); %>

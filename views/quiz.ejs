@@ -45,10 +45,12 @@
     <h1>Node.js Quiz - (<%= quizData.length %> Marks)</h1>
     <h4>Instructions : Each question carries one mark. There is no negative marking for wrong answers. Zero marks will be awarded for incorrect answers and for questions that are not attempted.</h4>
     <form id="quizForm" method="post" action="submit">
+        <!-- Iterating quizData.json to display questions and choices -->
         <% quizData.forEach(question => { %>
             <div>
                 <p><strong>Question <%= question.id %>:</strong> <%= question.question %></p>
                 <ul>
+                    <!-- using for loop to display all choices of question -->
                     <% question.choices.forEach(choice => { %>
                         <li>
                             <label>
